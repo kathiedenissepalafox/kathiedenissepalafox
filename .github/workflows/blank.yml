@@ -1,0 +1,37 @@
+
+# Este es un flujo de trabajo básico para ayudarlo a comenzar con Acciones
+
+ nombre: CI
+
+ # Controla cuándo se ejecutará el flujo de trabajo
+ en:
+   # Activa el flujo de trabajo en eventos de solicitud push o pull, pero solo para la rama "principal"
+   empujar:
+     sucursales: [ "principal" ]
+   solicitud de extracción:
+     sucursales: [ "principal" ]
+
+   # Le permite ejecutar este flujo de trabajo manualmente desde la pestaña Acciones
+   flujo de trabajo_despacho:
+
+ # Una ejecución de flujo de trabajo se compone de uno o más trabajos que pueden ejecutarse secuencialmente o en paralelo
+ trabajos:
+   # Este flujo de trabajo contiene un solo trabajo llamado "construir"
+   construir:
+     # El tipo de corredor en el que se ejecutará el trabajo
+     se ejecuta en: ubuntu-latest
+
+     # Los pasos representan una secuencia de tareas que se ejecutarán como parte del trabajo
+     pasos:
+       # Desprotege su repositorio en $GITHUB_WORKSPACE, para que su trabajo pueda acceder a él
+       - usos: acciones/checkout@v3
+
+       # Ejecuta un solo comando usando el intérprete de comandos
+       - nombre: ejecutar un script de una línea
+         run: echo ¡Hola, mundo!
+
+       # Ejecuta un conjunto de comandos usando el intérprete de comandos
+       - nombre: ejecutar un script de varias líneas
+         ejecutar: |
+           echo Agrega otras acciones para construir,
+           prueba de eco e implementa tu proyecto.
